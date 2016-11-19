@@ -1,6 +1,8 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
-public interface FractionInterface {
+import java.rmi.Remote;
+
+public interface FractionInterface extends Remote {
 
 	// Setter and getter
 	public int getZaehler();

@@ -1,9 +1,13 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
+import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Fraction implements FractionInterface {
+public class Fraction extends UnicastRemoteObject implements FractionInterface {
+
+	private static final long serialVersionUID = 1L;
+
 	private int nenner;
 	private int zaehler;
 
