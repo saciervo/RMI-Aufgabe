@@ -215,4 +215,9 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		a.setZaehler(tmp);
 		return a;
 	}
+
+	@Override
+	public FractionInterface createFraction(int zaehler, int nenner) throws RemoteException {
+		return new Fraction(zaehler, nenner);
+	}
 }

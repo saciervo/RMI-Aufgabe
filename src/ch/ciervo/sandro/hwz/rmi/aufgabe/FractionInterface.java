@@ -67,4 +67,6 @@ public interface FractionInterface extends Remote {
 	public FractionInterface kehrwert() throws RemoteException;
 
 	public FractionInterface kehrwert(FractionInterface a) throws RemoteException; // should be static
+
+	public FractionInterface createFraction(int zaehler, int nenner) throws RemoteException;
 }
