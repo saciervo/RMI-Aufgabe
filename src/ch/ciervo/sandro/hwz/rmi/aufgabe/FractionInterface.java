@@ -1,6 +1,7 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface FractionInterface extends Remote {
 
@@ -30,32 +31,32 @@ public interface FractionInterface extends Remote {
 	// -----------------
 
 	// common methods
-	public FractionInterface parseBruch(String bruchStr);
+	public FractionInterface parseBruch(String bruchStr) throws RemoteException;
 
 	// Operations
-	public FractionInterface operation(String opStr);
+	public FractionInterface operation(String opStr) throws RemoteException;
 
-	public FractionInterface add(FractionInterface summand2);
+	public FractionInterface add(FractionInterface summand2) throws RemoteException;
 
-	public FractionInterface add(FractionInterface summand1, FractionInterface summand2); // should
+	public FractionInterface add(FractionInterface summand1, FractionInterface summand2) throws RemoteException; // should
 																							// be
 																							// static
 
-	public FractionInterface sub(FractionInterface minuend);
+	public FractionInterface sub(FractionInterface minuend) throws RemoteException;
 
-	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend); // should
+	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) throws RemoteException; // should
 																							// be
 																							// static
 
-	public FractionInterface mul(FractionInterface factor2);
+	public FractionInterface mul(FractionInterface factor2) throws RemoteException;
 
-	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2); // should
+	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2) throws RemoteException; // should
 																						// be
 																						// static
 
-	public FractionInterface div(FractionInterface divisor);
+	public FractionInterface div(FractionInterface divisor) throws RemoteException;
 
-	public FractionInterface div(FractionInterface dividend, FractionInterface divisor); // should
+	public FractionInterface div(FractionInterface dividend, FractionInterface divisor) throws RemoteException; // should
 																							// be
 																							// static
 

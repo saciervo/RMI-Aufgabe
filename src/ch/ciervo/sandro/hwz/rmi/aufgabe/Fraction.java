@@ -1,5 +1,6 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,24 +41,24 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// Konstruktoren
-	public Fraction() {
+	public Fraction() throws RemoteException {
 		setBruch(0, 1);
 	}
 
-	public Fraction(FractionInterface a) {
+	public Fraction(FractionInterface a) throws RemoteException {
 		setBruch(a.getZaehler(), a.getNenner());
 	}
 
-	public Fraction(String a) {
+	public Fraction(String a) throws RemoteException {
 		FractionInterface b = parseBruch(a);
 		setBruch(b.getZaehler(), b.getNenner());
 	}
 
-	public Fraction(int zaehler, int nenner) {
+	public Fraction(int zaehler, int nenner) throws RemoteException {
 		setBruch(zaehler, nenner);
 	}
 
-	public Fraction(int zaehler) {
+	public Fraction(int zaehler) throws RemoteException {
 		setBruch(zaehler, 1);
 	}
 
@@ -94,7 +95,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	// -----------------
 
 	// common methods
-	public FractionInterface parseBruch(String bruchStr) {
+	public FractionInterface parseBruch(String bruchStr) throws RemoteException {
 		bruchStr = bruchStr.replaceAll("\\s+", "");
 		Pattern p = Pattern.compile("(\\d+)(?:/(\\d+))?");
 		Matcher m = p.matcher(bruchStr);
@@ -114,7 +115,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// Operations
-	public FractionInterface operation(String opStr) {
+	public FractionInterface operation(String opStr) throws RemoteException {
 		opStr = opStr.replaceAll("\\s+", "");
 		Pattern p = Pattern.compile("(\\d+(?:/\\d+)?)([-+*/:])(\\d+(?:/\\d+)?)");
 		Matcher m = p.matcher(opStr);
@@ -142,41 +143,41 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		}
 	}
 
-	public FractionInterface add(FractionInterface summand2) {
+	public FractionInterface add(FractionInterface summand2) throws RemoteException {
 		return add(this, summand2);
 	}
 
-	public FractionInterface add(FractionInterface summand1, FractionInterface summand2) {
+	public FractionInterface add(FractionInterface summand1, FractionInterface summand2) throws RemoteException {
 		int resNenner = summand1.getNenner() * summand2.getNenner();
 		int resZaehler = summand1.getZaehler() * summand2.getNenner() + summand2.getZaehler() * summand1.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	public FractionInterface sub(FractionInterface minuend) {
+	public FractionInterface sub(FractionInterface minuend) throws RemoteException {
 		return sub(this, minuend);
 	}
 
-	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) {
+	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) throws RemoteException {
 		int resNenner = sutrahend.getNenner() * minuend.getNenner();
 		int resZaehler = sutrahend.getZaehler() * minuend.getNenner() - minuend.getZaehler() * sutrahend.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	public FractionInterface mul(FractionInterface factor2) {
+	public FractionInterface mul(FractionInterface factor2) throws RemoteException {
 		return mul(this, factor2);
 	}
 
-	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2) {
+	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2) throws RemoteException {
 		int resZaehler = factor1.getZaehler() * factor2.getZaehler();
 		int resNenner = factor1.getNenner() * factor2.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	public FractionInterface div(FractionInterface divisor) {
+	public FractionInterface div(FractionInterface divisor) throws RemoteException {
 		return div(this, divisor);
 	}
 
-	public FractionInterface div(FractionInterface dividend, FractionInterface divisor) {
+	public FractionInterface div(FractionInterface dividend, FractionInterface divisor) throws RemoteException {
 		int resZaehler = dividend.getZaehler() * divisor.getNenner();
 		int resNenner = dividend.getNenner() * divisor.getZaehler();
 		return new Fraction(resZaehler, resNenner);
