@@ -63,8 +63,8 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// toString methods
-	public String toString() {
-		return toString(this);
+	public String toFractionString() {
+		return toFractionString(this);
 	}
 
 	public String toStringGekuerzt() {
@@ -75,7 +75,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		return toStringAsDecimal(this);
 	}
 
-	public String toString(FractionInterface a) {
+	public String toFractionString(FractionInterface a) {
 		if (a.getNenner() == 1) {
 			return "" + a.getZaehler();
 		} else {
@@ -84,7 +84,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	public String toStringGekuerzt(FractionInterface a) {
-		return toString(a.kuerzen());
+		return toFractionString(a.kuerzen());
 	}
 
 	public double toStringAsDecimal(FractionInterface a) {
