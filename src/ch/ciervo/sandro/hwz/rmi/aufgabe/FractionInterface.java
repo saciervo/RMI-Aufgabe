@@ -1,67 +1,72 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
-public interface FractionInterface {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface FractionInterface extends Remote {
 
 	// Setter and getter
-	public int getZaehler();
+	public int getZaehler() throws RemoteException;
 
-	public int getNenner();
+	public int getNenner() throws RemoteException;
 
-	public void setZaehler(int zaehler);
+	public void setZaehler(int zaehler) throws RemoteException;
 
-	public void setNenner(int nenner);
+	public void setNenner(int nenner) throws RemoteException;
 
 	// toString methods
-	public String toString();
+	public String toFractionString() throws RemoteException;
 
-	public String toStringGekuerzt();
+	public String toStringGekuerzt() throws RemoteException;
 
-	public double toStringAsDecimal();
+	public double toStringAsDecimal() throws RemoteException;
 
-	public String toString(FractionInterface a); // should be static
+	public String toFractionString(FractionInterface a) throws RemoteException; // should be static
 
-	public String toStringGekuerzt(FractionInterface a); // should be static
+	public String toStringGekuerzt(FractionInterface a) throws RemoteException; // should be static
 
-	public double toStringAsDecimal(FractionInterface a); // should be static
+	public double toStringAsDecimal(FractionInterface a) throws RemoteException; // should be static
 
 	// Business Methoden
 	// -----------------
 
 	// common methods
-	public FractionInterface parseBruch(String bruchStr);
+	public FractionInterface parseBruch(String bruchStr) throws RemoteException;
 
 	// Operations
-	public FractionInterface operation(String opStr);
+	public FractionInterface operation(String opStr) throws RemoteException;
 
-	public FractionInterface add(FractionInterface summand2);
+	public FractionInterface add(FractionInterface summand2) throws RemoteException;
 
-	public FractionInterface add(FractionInterface summand1, FractionInterface summand2); // should
+	public FractionInterface add(FractionInterface summand1, FractionInterface summand2) throws RemoteException; // should
 																							// be
 																							// static
 
-	public FractionInterface sub(FractionInterface minuend);
+	public FractionInterface sub(FractionInterface minuend) throws RemoteException;
 
-	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend); // should
+	public FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) throws RemoteException; // should
 																							// be
 																							// static
 
-	public FractionInterface mul(FractionInterface factor2);
+	public FractionInterface mul(FractionInterface factor2) throws RemoteException;
 
-	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2); // should
+	public FractionInterface mul(FractionInterface factor1, FractionInterface factor2) throws RemoteException; // should
 																						// be
 																						// static
 
-	public FractionInterface div(FractionInterface divisor);
+	public FractionInterface div(FractionInterface divisor) throws RemoteException;
 
-	public FractionInterface div(FractionInterface dividend, FractionInterface divisor); // should
+	public FractionInterface div(FractionInterface dividend, FractionInterface divisor) throws RemoteException; // should
 																							// be
 																							// static
 
-	public FractionInterface kuerzen();
+	public FractionInterface kuerzen() throws RemoteException;
 
-	public FractionInterface kuerzen(FractionInterface a); // should be static
+	public FractionInterface kuerzen(FractionInterface a) throws RemoteException; // should be static
 
-	public FractionInterface kehrwert();
+	public FractionInterface kehrwert() throws RemoteException;
 
-	public FractionInterface kehrwert(FractionInterface a); // should be static
+	public FractionInterface kehrwert(FractionInterface a) throws RemoteException; // should be static
+
+	public FractionInterface createFraction(int zaehler, int nenner) throws RemoteException;
 }
