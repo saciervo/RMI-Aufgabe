@@ -13,24 +13,24 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	private int zaehler;
 
 	// Setter and getter
-	public int getZaehler() {
+	public int getZaehler() throws RemoteException {
 		return zaehler;
 	}
 
-	public int getNenner() {
+	public int getNenner() throws RemoteException {
 		return nenner;
 	}
 
-	public void setZaehler(int zaehler) {
+	public void setZaehler(int zaehler) throws RemoteException {
 		this.zaehler = zaehler;
 	}
 
-	public void setNenner(int nenner) {
+	public void setNenner(int nenner) throws RemoteException {
 		this.nenner = nenner;
 	}
 
 	// internal methods
-	private void setBruch(int zaehler, int nenner) {
+	private void setBruch(int zaehler, int nenner) throws RemoteException {
 		if ((zaehler < 0) && (nenner < 0)) {
 			this.zaehler = Math.abs(zaehler);
 			this.nenner = Math.abs(nenner);
@@ -63,19 +63,19 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// toString methods
-	public String toFractionString() {
+	public String toFractionString() throws RemoteException {
 		return toFractionString(this);
 	}
 
-	public String toStringGekuerzt() {
+	public String toStringGekuerzt() throws RemoteException {
 		return toStringGekuerzt(this);
 	}
 
-	public double toStringAsDecimal() {
+	public double toStringAsDecimal() throws RemoteException {
 		return toStringAsDecimal(this);
 	}
 
-	public String toFractionString(FractionInterface a) {
+	public String toFractionString(FractionInterface a) throws RemoteException {
 		if (a.getNenner() == 1) {
 			return "" + a.getZaehler();
 		} else {
@@ -83,11 +83,11 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		}
 	}
 
-	public String toStringGekuerzt(FractionInterface a) {
+	public String toStringGekuerzt(FractionInterface a) throws RemoteException {
 		return toFractionString(a.kuerzen());
 	}
 
-	public double toStringAsDecimal(FractionInterface a) {
+	public double toStringAsDecimal(FractionInterface a) throws RemoteException {
 		return (1.0 * a.getZaehler()) / a.getNenner();
 	}
 
@@ -183,11 +183,11 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	public FractionInterface kuerzen() {
+	public FractionInterface kuerzen() throws RemoteException {
 		return kuerzen(this);
 	}
 
-	public FractionInterface kuerzen(FractionInterface a) {
+	public FractionInterface kuerzen(FractionInterface a) throws RemoteException {
 		int maxi = ((Math.abs(a.getZaehler()) / 2) + 1);
 		if (maxi <= 2) {
 			maxi++;
@@ -205,11 +205,11 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		return a;
 	}
 
-	public FractionInterface kehrwert() {
+	public FractionInterface kehrwert() throws RemoteException {
 		return kehrwert(this);
 	}
 
-	public FractionInterface kehrwert(FractionInterface a) {
+	public FractionInterface kehrwert(FractionInterface a) throws RemoteException {
 		int tmp = a.getNenner();
 		a.setNenner(a.getZaehler());
 		a.setZaehler(tmp);

@@ -6,26 +6,26 @@ import java.rmi.RemoteException;
 public interface FractionInterface extends Remote {
 
 	// Setter and getter
-	public int getZaehler();
+	public int getZaehler() throws RemoteException;
 
-	public int getNenner();
+	public int getNenner() throws RemoteException;
 
-	public void setZaehler(int zaehler);
+	public void setZaehler(int zaehler) throws RemoteException;
 
-	public void setNenner(int nenner);
+	public void setNenner(int nenner) throws RemoteException;
 
 	// toString methods
-	public String toFractionString();
+	public String toFractionString() throws RemoteException;
 
-	public String toStringGekuerzt();
+	public String toStringGekuerzt() throws RemoteException;
 
-	public double toStringAsDecimal();
+	public double toStringAsDecimal() throws RemoteException;
 
-	public String toFractionString(FractionInterface a); // should be static
+	public String toFractionString(FractionInterface a) throws RemoteException; // should be static
 
-	public String toStringGekuerzt(FractionInterface a); // should be static
+	public String toStringGekuerzt(FractionInterface a) throws RemoteException; // should be static
 
-	public double toStringAsDecimal(FractionInterface a); // should be static
+	public double toStringAsDecimal(FractionInterface a) throws RemoteException; // should be static
 
 	// Business Methoden
 	// -----------------
@@ -60,11 +60,11 @@ public interface FractionInterface extends Remote {
 																							// be
 																							// static
 
-	public FractionInterface kuerzen();
+	public FractionInterface kuerzen() throws RemoteException;
 
-	public FractionInterface kuerzen(FractionInterface a); // should be static
+	public FractionInterface kuerzen(FractionInterface a) throws RemoteException; // should be static
 
-	public FractionInterface kehrwert();
+	public FractionInterface kehrwert() throws RemoteException;
 
-	public FractionInterface kehrwert(FractionInterface a); // should be static
+	public FractionInterface kehrwert(FractionInterface a) throws RemoteException; // should be static
 }
