@@ -31,7 +31,11 @@ public interface FractionInterface extends Remote {
 	 * 
 	 * Bei der Erzeugung des Objekts über RMI wird der parameterlose Konstruktor
 	 * benutzt. Wenn ich einen anderen Konstruktor verwenden will, mach ich das
-	 * am besten über eine Factory-Methode wie diese hier
+	 * am besten über eine Factory-Methode wie diese hier.
+	 * 
+	 * Normalerweise sind Factory-Methoden statisch, da aber der Client keinen
+	 * Zugriff auf die Fraction-Klasse muss er halt eine neue Instanz über per
+	 * RMI erzeugte Instanz erzeugen.
 	 *
 	 * @param zaehler
 	 *            Der Zaehler des Bruchs

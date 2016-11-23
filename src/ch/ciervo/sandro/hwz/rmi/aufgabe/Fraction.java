@@ -128,7 +128,6 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// Factories
-	@Override
 	public FractionInterface createFraction(int zaehler, int nenner) throws RemoteException {
 		return new Fraction(zaehler, nenner);
 	}

@@ -38,19 +38,17 @@ public class Fraction_RMI_Client {
 
 		String op1Str = "5/6";
 		String op2Str = "12/9";
-		FractionInterface dummyObject = remote;
-
 		String operationStr = op1Str + "+" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 13/6");
+		System.out.println(operationStr + " = " + remote.operation(operationStr).toStringReadable() + "   Expected: 13/6");
 
 		operationStr = op1Str + "-" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: -1/2");
+		System.out.println(operationStr + " = " + remote.operation(operationStr).toStringReadable() + "   Expected: -1/2");
 
 		operationStr = op1Str + "*" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 10/9");
+		System.out.println(operationStr + " = " + remote.operation(operationStr).toStringReadable() + "   Expected: 10/9");
 
 		operationStr = op1Str + ":" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 5/8");
+		System.out.println(operationStr + " = " + remote.operation(operationStr).toStringReadable() + "   Expected: 5/8");
 		System.out.println("");
 
 		// Bruch-Rechner
@@ -62,7 +60,7 @@ public class Fraction_RMI_Client {
 			System.out.print("Operation [e.g. 1/3 + 4/5]: ");
 			try {
 				operationStr = inFromUser.readLine();
-				System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable());
+				System.out.println(operationStr + " = " + remote.operation(operationStr).toStringReadable());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
