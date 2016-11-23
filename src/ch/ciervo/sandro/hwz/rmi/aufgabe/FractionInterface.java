@@ -11,6 +11,9 @@ import java.io.Serializable;
  * 
  * Ausserdem wurden alle Accessoren entfernt, da ein Interface diese nicht
  * vorschreiben sollte, und auch nicht kann.
+ * 
+ * Neu erben wir noch von Serializable, damit das Objekt übers Netzwerk
+ * verschickt werden kann.
  */
 public interface FractionInterface extends Serializable {
 

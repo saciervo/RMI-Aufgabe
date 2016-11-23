@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
  * Die Businesslogik analog zur Bruch-Klasse aus den Kursunterlagen.
  * 
  * Alle Methoden die im Interface mit "should be static" kommentiert waren,
- * wurden hier auch als static implementiert. Ausserdem wurde der Access Level
- * auf "protected" geändert, weil sowieso nur Klassenintern (und vielleicht
+ * wurden hier auch als static implementiert. Ausserdem wurde deren Access Level
+ * auf "protected" geändert, weil sowieso nur klassenintern (und vielleicht
  * später einmal in Subklassen) darauf zugegriffen wird.
  * 
  */

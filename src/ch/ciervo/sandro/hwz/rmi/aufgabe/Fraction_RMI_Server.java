@@ -5,6 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * Der RMI-Server, aufgebaut wie der Test_RMI_Server aus den Kursunterlagen.
+ */
 public class Fraction_RMI_Server {
 
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {

@@ -3,8 +3,13 @@ package ch.ciervo.sandro.hwz.rmi.aufgabe;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface FractionFactoryInterface extends Remote {
-	
+/**
+ * Das öffentliche Interface für die Fraction Fabrik. Dieses Interface wird an
+ * für andere Programmierer veröffentlicht, damit diese die Fraction-Fabrik über RMI
+ * erstellen können.
+ */
+public interface IFractionFactory extends Remote {
+
 	FractionInterface createFraction() throws RemoteException;
 
 	FractionInterface createFraction(FractionInterface a) throws RemoteException;
