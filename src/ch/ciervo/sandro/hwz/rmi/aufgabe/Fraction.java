@@ -1,11 +1,18 @@
 package ch.ciervo.sandro.hwz.rmi.aufgabe;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Fraction extends UnicastRemoteObject implements FractionInterface {
+/**
+ * Die Businesslogik analog zur Bruch-Klasse aus den Kursunterlagen.
+ * 
+ * Alle Methoden die im Interface mit "should be static" kommentiert waren,
+ * wurden hier auch als static implementiert. Ausserdem wurde der Access Level
+ * auf "protected" geändert, weil sowieso nur Klassenintern (und vielleicht
+ * später einmal in Subklassen) darauf zugegriffen wird.
+ * 
+ */
+public class Fraction implements FractionInterface {
 
 	private static final long serialVersionUID = 1L;
 
@@ -13,24 +20,24 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	private int zaehler;
 
 	// Setter and getter
-	public int getZaehler() throws RemoteException {
+	public int getZaehler() {
 		return zaehler;
 	}
 
-	public int getNenner() throws RemoteException {
+	public int getNenner() {
 		return nenner;
 	}
 
-	public void setZaehler(int zaehler) throws RemoteException {
+	public void setZaehler(int zaehler) {
 		this.zaehler = zaehler;
 	}
 
-	public void setNenner(int nenner) throws RemoteException {
+	public void setNenner(int nenner) {
 		this.nenner = nenner;
 	}
 
 	// internal methods
-	protected void setBruch(int zaehler, int nenner) throws RemoteException {
+	protected void setBruch(int zaehler, int nenner) {
 		if ((zaehler < 0) && (nenner < 0)) {
 			this.zaehler = Math.abs(zaehler);
 			this.nenner = Math.abs(nenner);
@@ -40,7 +47,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		}
 	}
 
-	protected static String toStringReadable(FractionInterface a) throws RemoteException {
+	protected static String toString(FractionInterface a) {
 		if (a.getNenner() == 1) {
 			return "" + a.getZaehler();
 		} else {
@@ -48,39 +55,39 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		}
 	}
 
-	protected static String toStringGekuerzt(FractionInterface a) throws RemoteException {
-		return toStringReadable(a.kuerzen());
+	protected static String toStringGekuerzt(FractionInterface a) {
+		return toString(a.kuerzen());
 	}
 
-	protected static double toStringAsDecimal(FractionInterface a) throws RemoteException {
+	protected static double toStringAsDecimal(FractionInterface a) {
 		return (1.0 * a.getZaehler()) / a.getNenner();
 	}
 
-	protected static FractionInterface add(FractionInterface summand1, FractionInterface summand2) throws RemoteException {
+	protected static FractionInterface add(FractionInterface summand1, FractionInterface summand2) {
 		int resNenner = summand1.getNenner() * summand2.getNenner();
 		int resZaehler = summand1.getZaehler() * summand2.getNenner() + summand2.getZaehler() * summand1.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	protected static FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) throws RemoteException {
+	protected static FractionInterface sub(FractionInterface sutrahend, FractionInterface minuend) {
 		int resNenner = sutrahend.getNenner() * minuend.getNenner();
 		int resZaehler = sutrahend.getZaehler() * minuend.getNenner() - minuend.getZaehler() * sutrahend.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	protected static FractionInterface mul(FractionInterface factor1, FractionInterface factor2) throws RemoteException {
+	protected static FractionInterface mul(FractionInterface factor1, FractionInterface factor2) {
 		int resZaehler = factor1.getZaehler() * factor2.getZaehler();
 		int resNenner = factor1.getNenner() * factor2.getNenner();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	protected static FractionInterface div(FractionInterface dividend, FractionInterface divisor) throws RemoteException {
+	protected static FractionInterface div(FractionInterface dividend, FractionInterface divisor) {
 		int resZaehler = dividend.getZaehler() * divisor.getNenner();
 		int resNenner = dividend.getNenner() * divisor.getZaehler();
 		return new Fraction(resZaehler, resNenner);
 	}
 
-	protected static FractionInterface kuerzen(FractionInterface a) throws RemoteException {
+	protected static FractionInterface kuerzen(FractionInterface a) {
 		int maxi = ((Math.abs(a.getZaehler()) / 2) + 1);
 		if (maxi <= 2) {
 			maxi++;
@@ -98,7 +105,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		return a;
 	}
 
-	protected static FractionInterface kehrwert(FractionInterface a) throws RemoteException {
+	protected static FractionInterface kehrwert(FractionInterface a) {
 		int tmp = a.getNenner();
 		a.setNenner(a.getZaehler());
 		a.setZaehler(tmp);
@@ -106,42 +113,37 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// Konstruktoren
-	public Fraction() throws RemoteException {
+	public Fraction() {
 		setBruch(0, 1);
 	}
 
-	protected Fraction(FractionInterface a) throws RemoteException {
+	public Fraction(FractionInterface a) {
 		setBruch(a.getZaehler(), a.getNenner());
 	}
 
-	protected Fraction(String a) throws RemoteException {
+	public Fraction(String a) {
 		FractionInterface b = parseBruch(a);
 		setBruch(b.getZaehler(), b.getNenner());
 	}
 
-	protected Fraction(int zaehler, int nenner) throws RemoteException {
+	public Fraction(int zaehler, int nenner) {
 		setBruch(zaehler, nenner);
 	}
 
-	protected Fraction(int zaehler) throws RemoteException {
+	public Fraction(int zaehler) {
 		setBruch(zaehler, 1);
 	}
 
-	// Factories
-	public FractionInterface createFraction(int zaehler, int nenner) throws RemoteException {
-		return new Fraction(zaehler, nenner);
-	}
-
 	// toString methods
-	public String toStringReadable() throws RemoteException {
-		return toStringReadable(this);
+	public String toString() {
+		return toString(this);
 	}
 
-	public String toStringGekuerzt() throws RemoteException {
+	public String toStringGekuerzt() {
 		return toStringGekuerzt(this);
 	}
 
-	public double toStringAsDecimal() throws RemoteException {
+	public double toStringAsDecimal() {
 		return toStringAsDecimal(this);
 	}
 
@@ -149,7 +151,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	// -----------------
 
 	// common methods
-	public FractionInterface parseBruch(String bruchStr) throws RemoteException {
+	public FractionInterface parseBruch(String bruchStr) {
 		bruchStr = bruchStr.replaceAll("\\s+", "");
 		Pattern p = Pattern.compile("(\\d+)(?:/(\\d+))?");
 		Matcher m = p.matcher(bruchStr);
@@ -169,7 +171,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 	}
 
 	// Operations
-	public FractionInterface operation(String opStr) throws RemoteException {
+	public FractionInterface operation(String opStr) {
 		opStr = opStr.replaceAll("\\s+", "");
 		Pattern p = Pattern.compile("(\\d+(?:/\\d+)?)([-+*/:])(\\d+(?:/\\d+)?)");
 		Matcher m = p.matcher(opStr);
@@ -189,7 +191,7 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 				String[] opStrParts = opStr.split("\\:");
 				b = new Fraction(div(parseBruch(opStrParts[0]), parseBruch(opStrParts[1])));
 			} else {
-				System.err.println("ERROR: Bruch::opertion: Unknown operation:" + opStr);
+				System.err.println("ERROR: Bruch::operation: Unknown operation:" + opStr);
 			}
 			return b.kuerzen();
 		} else {
@@ -197,27 +199,27 @@ public class Fraction extends UnicastRemoteObject implements FractionInterface {
 		}
 	}
 
-	public FractionInterface add(FractionInterface summand2) throws RemoteException {
+	public FractionInterface add(FractionInterface summand2) {
 		return add(this, summand2);
 	}
 
-	public FractionInterface sub(FractionInterface minuend) throws RemoteException {
+	public FractionInterface sub(FractionInterface minuend) {
 		return sub(this, minuend);
 	}
 
-	public FractionInterface mul(FractionInterface factor2) throws RemoteException {
+	public FractionInterface mul(FractionInterface factor2) {
 		return mul(this, factor2);
 	}
 
-	public FractionInterface div(FractionInterface divisor) throws RemoteException {
+	public FractionInterface div(FractionInterface divisor) {
 		return div(this, divisor);
 	}
 
-	public FractionInterface kuerzen() throws RemoteException {
+	public FractionInterface kuerzen() {
 		return kuerzen(this);
 	}
 
-	public FractionInterface kehrwert() throws RemoteException {
+	public FractionInterface kehrwert() {
 		return kehrwert(this);
 	}
 
