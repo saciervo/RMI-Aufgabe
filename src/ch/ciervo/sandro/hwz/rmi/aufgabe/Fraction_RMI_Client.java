@@ -17,22 +17,22 @@ public class Fraction_RMI_Client {
 		// Tests
 		System.out.println("Some Test-Cases");
 		FractionInterface b1 = remote.createFraction(1, 2);
-		System.out.println("b1              =" + b1.toFractionString());
+		System.out.println("b1              =" + b1.toStringReadable());
 		System.out.println("b1 (as decimal) =" + b1.toStringAsDecimal());
 		System.out.println("b1 (gekuerzt)   =" + b1.toStringGekuerzt() + "\n");
 
 		FractionInterface b2 = remote.createFraction(3, 4);
-		System.out.println("b2              =" + b2.toFractionString());
+		System.out.println("b2              =" + b2.toStringReadable());
 		System.out.println("b2 (as decimal) =" + b2.toStringAsDecimal());
 		System.out.println("b2 (gekuerzt)   =" + b2.toStringGekuerzt() + "\n");
 
 		FractionInterface b3 = remote.createFraction(4, 6);
-		System.out.println("b3              =" + b3.toFractionString());
+		System.out.println("b3              =" + b3.toStringReadable());
 		System.out.println("b3 (as decimal) =" + b3.toStringAsDecimal());
 		System.out.println("b3 (gekuerzt)   =" + b3.toStringGekuerzt() + "\n");
 
 		FractionInterface b4 = remote.createFraction(6, 3);
-		System.out.println("b4              =" + b4.toFractionString());
+		System.out.println("b4              =" + b4.toStringReadable());
 		System.out.println("b4 (as decimal) =" + b4.toStringAsDecimal());
 		System.out.println("b4 (gekuerzt)   =" + b4.toStringGekuerzt() + "\n");
 
@@ -41,16 +41,16 @@ public class Fraction_RMI_Client {
 		FractionInterface dummyObject = remote;
 
 		String operationStr = op1Str + "+" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toFractionString() + "   Expected: 13/6");
+		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 13/6");
 
 		operationStr = op1Str + "-" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toFractionString() + "   Expected: -1/2");
+		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: -1/2");
 
 		operationStr = op1Str + "*" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toFractionString() + "   Expected: 10/9");
+		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 10/9");
 
 		operationStr = op1Str + ":" + op2Str;
-		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toFractionString() + "   Expected: 5/8");
+		System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable() + "   Expected: 5/8");
 		System.out.println("");
 
 		// Bruch-Rechner
@@ -62,7 +62,7 @@ public class Fraction_RMI_Client {
 			System.out.print("Operation [e.g. 1/3 + 4/5]: ");
 			try {
 				operationStr = inFromUser.readLine();
-				System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toFractionString());
+				System.out.println(operationStr + " = " + dummyObject.operation(operationStr).toStringReadable());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -15,13 +15,13 @@ public interface FractionInterface extends Remote {
 	public void setNenner(int nenner) throws RemoteException;
 
 	// toString methods
-	public String toFractionString() throws RemoteException;
+	public String toStringReadable() throws RemoteException;
 
 	public String toStringGekuerzt() throws RemoteException;
 
 	public double toStringAsDecimal() throws RemoteException;
 
-	public String toFractionString(FractionInterface a) throws RemoteException; // should be static
+	public String toStringReadable(FractionInterface a) throws RemoteException; // should be static
 
 	public String toStringGekuerzt(FractionInterface a) throws RemoteException; // should be static
 
