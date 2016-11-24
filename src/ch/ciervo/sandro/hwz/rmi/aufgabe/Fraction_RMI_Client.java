@@ -33,6 +33,7 @@ public class Fraction_RMI_Client {
 				answer = Integer.parseInt(inFromUser.readLine());
 				switch (answer) {
 				case 0:
+					System.out.println("Vielen Dank und auf Wiedersehen!");
 					break;
 				case 1:
 					printTests(factory);
